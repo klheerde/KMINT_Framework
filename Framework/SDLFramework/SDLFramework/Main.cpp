@@ -5,6 +5,9 @@
 #include "SDL_timer.h"
 #include <time.h>
 
+#include "ExampleGameObject.h"
+
+
 int main(int args[])
 {
 	//auto window = Window::CreateSDLWindow();
@@ -41,9 +44,21 @@ int main(int args[])
 			}
 		}
 		
+		// This is example code, replace with your own!
+
+		// Dancing cow
+		ExampleGameObject *example = new ExampleGameObject();
+		application->AddRenderable(example);
+
+		// Text drawing
 		application->SetColor(Color(0, 0, 0, 255));
 		application->DrawText("Welcome to KMint", 800 / 2, 600 / 2);
 		
+		// Graph drawing
+
+		application->DrawLine(0, 0, 100, 100);
+		application->DrawRect(400, 400, 10, 10, false);
+
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
 
