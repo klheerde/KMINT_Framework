@@ -7,6 +7,7 @@
 #include <SDL_events.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL2_gfxPrimitives.h>
 
 FWApplication * FWApplication::mInstance;
 FWApplication::FWApplication(int offsetX, int offsetY, int width, int height)
@@ -207,9 +208,9 @@ void FWApplication::RemoveTexture(SDL_Texture * texture)
 	SDL_DestroyTexture(texture);
 }
 
-void FWApplication::DrawLine(int startPosX, int startPosY, int endPosX, int endPosY)
+void FWApplication::DrawLine(int startPosX, int startPosY, int endPosX, int endPosY, int width)
 {
-	SDL_RenderDrawLine(mRenderer, startPosX, startPosY, endPosX, endPosY);
+	thickLineRGBA(mRenderer, startPosX, startPosY, endPosX, endPosY, width, mColor.r, mColor.g, mColor.b, mColor.a);
 }
 
 void FWApplication::SetColor(const Color & color)
@@ -232,91 +233,14 @@ void FWApplication::DrawRect(int startPosX, int startPosY, int width, int height
 	}
 }
 
-
-//void FWApplication::DrawEllipse(int offsetX, int offsetY, int width, int height, bool fill)
-//{
-//	////
-//	//// http://sdl-draw.sourceforge.net/
-//	//// 
-//
-//	SDL_Rect rect = { offsetX, offsetY, width, height };
-//
-//	Sint32 x, y;
-//	Sint32 Xchange, Ychange;
-//	Sint32 EllipseError;
-//	Sint32 TwoASquare, TwoBSquare;
-//	Sint32 StoppingX, StoppingY;
-//
-//	TwoASquare = 2 * width*width;
-//	TwoBSquare = 2 * height*height;
-//
-//	/*1st set of points*/
-//	x = width - 1;  /*radius zero == draw nothing*/
-//	y = 0;
-//
-//	x += offsetX;
-//	y += offsetY;
-//
-//	Xchange = height*height*(1 - 2 * width);
-//	Ychange = width*width;
-//
-//	EllipseError = 0;
-//
-//	StoppingX = TwoBSquare*width;
-//	StoppingY = 0;
-//
-//	SDL_Surface * super = SDL_GetWindowSurface(mWindow);
-//	if (SDL_MUSTLOCK(super)) {
-//		if (SDL_LockSurface(super) < 0)  { return; }
-//	}
-//
-//	while (StoppingX > StoppingY)
-//	{
-//		SDL_DRAW_PUTPIXEL
-//		++y;
-//
-//		StoppingY += TwoASquare;
-//		EllipseError += Ychange;
-//		Ychange += TwoASquare;
-//		if ((2 * EllipseError + Xchange) > 0) {
-//			--x;
-//			StoppingX -= TwoBSquare;
-//			EllipseError += Xchange;
-//			Xchange += TwoBSquare;
-//		}
-//	}
-//
-//	/*2nd set of points*/
-//	x = 0;
-//	y = height - 1;
-//
-//	x += offsetX;
-//	y += offsetY;
-//
-//	Xchange = height*height;
-//	Ychange = width*width*(1 - 2 * height);
-//	EllipseError = 0;
-//	StoppingX = 0;
-//	StoppingY = TwoASquare*height;
-//
-//	while (StoppingX < StoppingY)
-//	{
-//		SDL_RenderDrawPoint(mRenderer, x, y);
-//		
-//		++x;
-//		StoppingX += TwoBSquare;
-//		EllipseError += Xchange;
-//		Xchange += TwoBSquare;
-//		if ((2 * EllipseError + Ychange) > 0) {
-//			--y;
-//			StoppingY -= TwoASquare;
-//			EllipseError += Ychange;
-//			Ychange += TwoASquare;
-//		}
-//	}
-//
-//	if (SDL_MUSTLOCK(super))  { SDL_UnlockSurface(super); }
-//}
+void FWApplication::DrawCircle(int startPosX, int startPosY, int size, bool fill) {
+	if (fill) {
+		filledCircleRGBA(mRenderer, startPosX, startPosY, size, mColor.r, mColor.g, mColor.b, mColor.a);
+	}
+	else {
+		circleRGBA(mRenderer, startPosX, startPosY, size, mColor.r, mColor.g, mColor.b, mColor.a);
+	}
+}
 
 void FWApplication::AddRenderable(IGameObject * renderable)
 {

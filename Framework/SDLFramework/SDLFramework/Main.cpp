@@ -52,12 +52,18 @@ int main(int args[])
 
 		// Text drawing
 		application->SetColor(Color(0, 0, 0, 255));
-		application->DrawText("Welcome to KMint", 800 / 2, 600 / 2);
+		application->DrawText("Welcome to KMint", 400, 300);
 		
 		// Graph drawing
+		application->SetColor(Color(0, 0, 0, 255));
+		application->DrawLine(400, 350, 350, 400);
+		application->DrawLine(350, 400, 450, 400);
+		application->DrawLine(450, 400, 400, 350);
 
-		application->DrawLine(0, 0, 100, 100);
-		application->DrawRect(400, 400, 10, 10, false);
+		application->SetColor(Color(0, 0, 255, 255));
+		application->DrawCircle(400, 350, 10, true);
+		application->DrawCircle(350, 400, 10, true);
+		application->DrawCircle(450, 400, 10, true);
 
 		// For the background
 		application->SetColor(Color(255, 255, 255, 255));
