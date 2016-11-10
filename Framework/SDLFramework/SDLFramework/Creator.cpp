@@ -15,7 +15,7 @@ void Creator::Create()
 	const int WEIGHT_WATER = 2;
 	const int WEIGHT_LANE = 3;
 
-	Graph graph;
+	Graph graph; //
 
 	auto vertex1 = vtx_ptr {new Vertex(12, 564)};
 	graph.AddVertex(vertex1);
