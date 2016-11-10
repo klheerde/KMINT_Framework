@@ -16,5 +16,8 @@ public:
 
 	void AddVertex(vtx_ptr vertex);
 	void AddEdge(edg_ptr edge);
+
+	std::vector<vtx_ptr> GetVertices() const;
+	std::vector<edg_ptr> GetEdges() const;
 };
 

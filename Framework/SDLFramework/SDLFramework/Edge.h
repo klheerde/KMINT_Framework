@@ -3,8 +3,6 @@
 #include <memory>
 #include "Vertex.h"
 
-typedef std::shared_ptr<Edge> edg_ptr;
-
 class Edge
 {
 private:
@@ -20,3 +18,4 @@ public:
 	int GetWeight() const;
 };
 
+typedef std::shared_ptr<Edge> edg_ptr;

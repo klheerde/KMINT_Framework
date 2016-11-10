@@ -2,8 +2,6 @@
 
 #include <memory>
 
-typedef std::shared_ptr<Vertex> vtx_ptr;
-
 class Vertex
 {
 private:
@@ -14,4 +12,6 @@ public:
 	Vertex(int x, int y);
 	~Vertex();
 };
+
+typedef std::shared_ptr<Vertex> vtx_ptr;
 
