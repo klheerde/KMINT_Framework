@@ -10,6 +10,7 @@
 #include "Creator.h"
 #include "Cow.h"
 #include "Rabbit.h"
+#include "Random.h"
 
 
 int main(int args[])
@@ -29,13 +30,13 @@ int main(int args[])
 	grp_ptr graph = Creator {}.Create();
 	Visualiser visualiser {application, graph};
 
-	//NOTE: create cow.
-	Cow* cow = new Cow {graph->GetRoot()};
-	application->AddRenderable(cow);
-
+	//NOTE: create new rabbit.
 	Rabbit* rabbit = new Rabbit {graph->GetRoot()->NextRandom()};
 	application->AddRenderable(rabbit);
 
+	//NOTE: create cow.
+	Cow* cow = new Cow {graph->GetRoot(), rabbit};
+	application->AddRenderable(cow);
 	//
 
 	while (application->IsRunning())
@@ -53,15 +54,27 @@ int main(int args[])
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym)
 				{
+				//NOTE: press R to move both animals randomly.
 				case SDLK_r:
-					cow->NextVertex();
+					cow->StepRandom();
 					rabbit->NextVertex();
 					break;
-
+				//NOTE: press space to move cow by A* algoritm.
+				case SDLK_SPACE :
+					//NOTE: entire path searched every time space pressed.
+					cow->StepSearch();
+					break;
 				default:
 					break;
 				}
 			}
+		}
+
+		//NOTE: if cow found rabbit move rabbit to new random vertex.
+		while (cow->GetVertex() == rabbit->GetVertex())
+		{
+			for (int i = 0; i < Random::GetRandom(100); ++i)
+				rabbit->NextVertex();
 		}
 		
 
