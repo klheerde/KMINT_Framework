@@ -17,7 +17,9 @@ public:
 	void AddVertex(vtx_ptr vertex);
 	void AddEdge(edg_ptr edge);
 
+	vtx_ptr GetRoot() const;
 	std::vector<vtx_ptr> GetVertices() const;
 	std::vector<edg_ptr> GetEdges() const;
 };
 
+typedef std::shared_ptr<Graph> grp_ptr;

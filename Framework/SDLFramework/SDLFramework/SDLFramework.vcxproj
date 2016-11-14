@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cow.cpp" />
     <ClCompile Include="Creator.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Config.h" />
+    <ClInclude Include="Cow.h" />
     <ClInclude Include="Creator.h" />
     <ClInclude Include="Edge.h" />
     <ClInclude Include="FWApplication.h" />

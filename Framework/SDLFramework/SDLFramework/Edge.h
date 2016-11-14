@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 #include "Vertex.h"
 
 class Edge
@@ -14,6 +15,7 @@ public:
 	Edge(vtx_ptr one, vtx_ptr two, int weight, int amount = 2);
 	~Edge();
 
+	int GetAmount() const;
 	vtx_ptr GetVertex(int index) const;
 	int GetWeight() const;
 };

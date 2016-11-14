@@ -1,11 +1,22 @@
 #include "Edge.h"
 
 Edge::Edge(vtx_ptr one, vtx_ptr two, int weight, int amount) :
-	vertices {one, two}, weight {weight}, amount {amount}
-{ }
+	vertices {one, two}, 
+	weight {weight}, 
+	amount {amount}
+{
+	edg_ptr self {this};
+	one->AddEdge(self);
+	two->AddEdge(self);
+}
 
 Edge::~Edge()
 { }
+
+int Edge::GetAmount() const
+{
+	return amount;
+}
 
 vtx_ptr Edge::GetVertex(int index) const
 {

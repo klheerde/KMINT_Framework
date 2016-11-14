@@ -6,10 +6,11 @@
 class Visualiser
 {
 private:
-	FWApplication const* app;
+	FWApplication* app;
+	grp_ptr graph;
 
 public:
-	Visualiser(FWApplication const* app, std::unique_ptr<Graph const> graph);
+	Visualiser(FWApplication* app, grp_ptr graph);
 	~Visualiser();
 
 	void Draw() const;
