@@ -9,6 +9,7 @@
 #include "Visualiser.h"
 #include "Creator.h"
 #include "Cow.h"
+#include "Rabbit.h"
 
 
 int main(int args[])
@@ -31,6 +32,10 @@ int main(int args[])
 	//NOTE: create cow.
 	Cow* cow = new Cow {graph->GetRoot()};
 	application->AddRenderable(cow);
+
+	Rabbit* rabbit = new Rabbit {graph->GetRoot()->NextRandom()};
+	application->AddRenderable(rabbit);
+
 	//
 
 	while (application->IsRunning())
@@ -50,6 +55,7 @@ int main(int args[])
 				{
 				case SDLK_r:
 					cow->NextVertex();
+					rabbit->NextVertex();
 					break;
 
 				default:

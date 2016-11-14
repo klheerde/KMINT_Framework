@@ -1,32 +1,32 @@
-#include "Cow.h"
+#include "Rabbit.h"
 #include <SDL_render.h>
 #include <ctime>
 #include "Edge.h"
 
-Cow::Cow(vtx_ptr vertex) :
+Rabbit::Rabbit(vtx_ptr vertex) :
 	vertex {vertex}
 {
-	texture = mApplication->LoadTexture("lemmling_Cartoon_cow.png");
+	texture = mApplication->LoadTexture("rabbit-3.png");
 	SetTexture(texture);
 	SetSize(50, 50);
 }
 
-Cow::~Cow()
+Rabbit::~Rabbit()
 {
 	SDL_DestroyTexture(texture);
 }
 
-void Cow::Update(float deltaTime)
+void Rabbit::Update(float deltaTime)
 {
 	SetOffset(vertex->GetX(), vertex->GetY());
 }
 
-void Cow::NextVertex()
+void Rabbit::NextVertex()
 {
 	vertex = vertex->NextRandom();
 }
 
-vtx_ptr Cow::GetVertex() const
+vtx_ptr Rabbit::GetVertex() const
 {
 	return vertex;
 }
