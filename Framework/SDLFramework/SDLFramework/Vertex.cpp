@@ -10,9 +10,6 @@ Vertex::Vertex(int x, int y) :
 	y {y}
 { }
 
-Vertex::~Vertex()
-{ }
-
 vtx_ptr Vertex::NextRandom() const
 {
 	int index = Random::GetRandom(edges.size());

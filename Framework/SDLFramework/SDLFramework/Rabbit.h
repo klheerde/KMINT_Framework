@@ -7,7 +7,5 @@ class Rabbit : public AEntity
 {
 public:
 	Rabbit(vtx_ptr vertex);
-
-	void NextVertex();
 };
 

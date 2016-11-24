@@ -21,7 +21,6 @@ private:
 
 public:
 	Vertex(int x, int y);
-	~Vertex();
 
 	vtx_ptr NextRandom() const;
 

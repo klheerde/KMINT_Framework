@@ -4,8 +4,3 @@
 Rabbit::Rabbit(vtx_ptr vertex) :
 	AEntity(vertex, "rabbit-3.png")
 { }
-
-void Rabbit::NextVertex()
-{
-	vertex = vertex->NextRandom();
-}
