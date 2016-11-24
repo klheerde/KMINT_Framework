@@ -84,34 +84,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AEntity.cpp" />
+    <ClCompile Include="ChasingState.cpp" />
     <ClCompile Include="Cow.cpp" />
     <ClCompile Include="Creator.cpp" />
     <ClCompile Include="Edge.cpp" />
     <ClCompile Include="FWApplication.cpp" />
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="IdleState.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ExampleGameObject.cpp" />
     <ClCompile Include="Rabbit.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Vertex.cpp" />
     <ClCompile Include="Visualiser.cpp" />
+    <ClCompile Include="WanderingState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SDL2.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AEntity.h" />
+    <ClInclude Include="AState.h" />
+    <ClInclude Include="ChasingState.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="Cow.h" />
     <ClInclude Include="Creator.h" />
     <ClInclude Include="Edge.h" />
+    <ClInclude Include="AEntityState.h" />
     <ClInclude Include="FWApplication.h" />
     <ClInclude Include="ExampleGameObject.h" />
     <ClInclude Include="Graph.h" />
+    <ClInclude Include="IdleState.h" />
     <ClInclude Include="IGameObject.h" />
     <ClInclude Include="Rabbit.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Visualiser.h" />
+    <ClInclude Include="WanderingState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

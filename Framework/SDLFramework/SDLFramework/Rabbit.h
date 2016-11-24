@@ -1,22 +1,13 @@
 #pragma once
 
-#include "IGameObject.h"
 #include "Vertex.h"
+#include "AEntity.h"
 
-class Rabbit : public IGameObject
+class Rabbit : public AEntity
 {
-private:
-	vtx_ptr vertex;
-	SDL_Texture *texture;
-
 public:
 	Rabbit(vtx_ptr vertex);
-	~Rabbit();
-
-	void Update(float deltaTime) override;
 
 	void NextVertex();
-
-	vtx_ptr GetVertex() const;
 };
 
