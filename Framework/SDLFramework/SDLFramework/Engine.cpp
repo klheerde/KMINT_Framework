@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include "IdleState.h"
 #include "ChasingState.h"
+#include "EntityVertex.h"
 
 Engine::Engine(int dropRate) :
 	app {new FWApplication},
@@ -22,13 +23,13 @@ Engine::Engine(int dropRate) :
 		Pill* pill = pills[i] = new Pill {graph->GetRoot()};
 		pill->StepRandom(Random::GetRandom(200));
 		//NOTE: dont spawn if vertex already has entity.
-		while (AEntity::GetEntities(pill->GetVertex()).size() > 1) 
+		while (EntityVertex::Cast(pill->GetVertex())->GetEntities().size() > 1) 
 			pill->StepRandom(Random::GetRandom(200));
 
-		Sword* sword = swords[i] = new Sword {graph->GetRoot()};
+		Sword* sword = swords[i] = new Sword {graph->GetRoot(), this};
 		sword->StepRandom(Random::GetRandom(200));
 		//NOTE: dont spawn if vertex already has entity.
-		while (AEntity::GetEntities(sword->GetVertex()).size() > 1)
+		while (EntityVertex::Cast(sword->GetVertex())->GetEntities().size() > 1)
 			sword->StepRandom(Random::GetRandom(200));
 	}
 }
@@ -61,14 +62,15 @@ int Engine::Start()
 
 	app->SetTargetFPS(60);
 	app->SetColor(Color(255, 10, 40, 255));
-	app->AddRenderable(cow);
-	app->AddRenderable(rabbit);
 
 	for (int i = 0; i < dropRate; ++i)
 	{
 		app->AddRenderable(pills[i]);
 		app->AddRenderable(swords[i]);
 	}
+
+	app->AddRenderable(rabbit);
+	app->AddRenderable(cow);
 
 	int state = EXIT_SUCCESS;
 	while (isRunning && app->IsRunning())
@@ -89,11 +91,6 @@ int Engine::Run()
 	int pollState = PollEvents();
 	if (pollState != EXIT_SUCCESS)
 		return pollState;
-
-	//TODO place somewhere else
-	//NOTE: if cow found rabbit move rabbit to new random vertex.
-	while (cow->GetVertex() == rabbit->GetVertex())
-		rabbit->StepRandom(Random::GetRandom(100));
 
 	app->UpdateGameObjects();
 	visualiser->Draw();
@@ -129,14 +126,14 @@ int Engine::PollEvents()
 
 					//NOTE: press S to start chase.
 					case SDLK_s:
-						rabbit->SetState(new IdleState);
+ 						rabbit->SetState(new IdleState);
 						cow->SetState(new ChasingState {rabbit});
 						break;
 
 					//NOTE: press space to move cow by state //A* algoritm.
 					case SDLK_SPACE:
-						cow->GetState().Perform(cow);
-						rabbit->GetState().Perform(rabbit);
+						rabbit->GetState()->Perform(rabbit);
+ 						cow->GetState()->Perform(cow);
 
 						//NOTE: entire path searched every time space pressed.
 						//							cow->StepSearch();
@@ -147,4 +144,14 @@ int Engine::PollEvents()
 	}
 
 	return EXIT_SUCCESS;
+}
+
+Cow* Engine::GetCow() const
+{
+	return cow;
+}
+
+Rabbit* Engine::GetRabbit() const
+{
+	return rabbit;
 }

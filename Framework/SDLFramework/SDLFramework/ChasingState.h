@@ -1,9 +1,8 @@
 #pragma once
 
-#include "AEntityState.h"
-#include "Vertex.h"
+#include "WanderingState.h"
 
-class ChasingState : public AEntityState
+class ChasingState : public WanderingState
 {
 protected:
 	AEntity* target;

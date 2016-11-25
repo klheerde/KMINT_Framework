@@ -25,22 +25,6 @@ public:
 	void SetVertex(vtx_ptr vertex);
 
 	//GETTERS
-	AEntityState const& GetState() const; //TODO const&, you sure?
+	AEntityState const* GetState() const; //TODO const&, you sure?
 	vtx_ptr GetVertex() const;
-
-public:
-	/**
-	* Casts Vertex* to EntityVertex* and adds AEntity*.
-	*/
-	static void AddEntity(vtx_ptr vertex, AEntity* entity);
-
-	/**
-	* Casts Vertex* to EntityVertex* and removes AEntity*.
-	*/
-	static void RemoveEntity(vtx_ptr vertex, AEntity* entity);
-
-	/**
-	* Casts Vertex* to EntityVertex* and gets AEntity*.
-	*/
-	static std::vector<AEntity*> GetEntities(vtx_ptr vertex);
 };

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "AEntity.h"
+#include "ADropEntity.h"
 
-class Pill : public AEntity
+class Pill : public ADropEntity
 {
 public:
 	Pill(vtx_ptr vertex);

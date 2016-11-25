@@ -225,6 +225,8 @@ public:
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	void AddRenderable(IGameObject * renderable);
 
+	void RemoveRenderable(IGameObject * renderable);
+
 	uint32_t GetTimeSinceStartedMS() const;
 
 

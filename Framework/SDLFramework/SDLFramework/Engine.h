@@ -28,10 +28,13 @@ private:
 	bool isRunning;
 
 public:
-	Engine(int dropRate = 20);
+	Engine(int dropRate = 10);
 	~Engine();
 
 	int Start();
+
+	Cow* GetCow() const;
+	Rabbit* GetRabbit() const;
 
 private:
 	int Run();

@@ -27,3 +27,8 @@ void EntityVertex::RemoveEntity(AEntity* entity)
 		entities.pop_back();
 	}
 }
+
+std::shared_ptr<EntityVertex> EntityVertex::Cast(vtx_ptr vertex)
+{
+	return std::static_pointer_cast<EntityVertex>(vertex);
+}

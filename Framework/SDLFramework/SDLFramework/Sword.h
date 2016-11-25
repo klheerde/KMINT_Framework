@@ -1,9 +1,11 @@
 #pragma once
 
-#include "AEntity.h"
+#include "ADropEntity.h"
 
-class Sword : public AEntity
+class Engine;
+
+class Sword : public ADropEntity
 {
 public:
-	Sword(vtx_ptr vertex);
+	Sword(vtx_ptr vertex, Engine* engine);
 };

@@ -14,4 +14,7 @@ public:
 	std::vector<AEntity*> GetEntities() const;
 	void AddEntity(AEntity* entity);
 	void RemoveEntity(AEntity* entity);
+
+public:
+	static std::shared_ptr<EntityVertex> Cast(vtx_ptr vertex);
 };

@@ -247,6 +247,25 @@ void FWApplication::AddRenderable(IGameObject * renderable)
 	mGameObjects.push_back(renderable);
 }
 
+void FWApplication::RemoveRenderable(IGameObject* renderable)
+{
+	if (renderable == nullptr)
+		return;
+	if (renderable->GetTexture() != nullptr)
+		RemoveTexture(renderable->GetTexture());
+
+	auto end = mGameObjects.end();
+	auto it = std::find(mGameObjects.begin(), end, renderable);
+
+	if (it != end)
+	{
+		using std::swap;
+		//NOTE: swap to last element en remove.
+		swap(*it, mGameObjects.back());
+		mGameObjects.pop_back();
+	}
+}
+
 uint32_t FWApplication::GetTimeSinceStartedMS() const
 {
 	return mTimeMS;
